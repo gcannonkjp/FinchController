@@ -37,13 +37,26 @@ namespace FinchVS {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Button^  button1;
-	private: System::Windows::Forms::Button^  button2;
-	private: System::Windows::Forms::Button^  button3;
-	private: System::Windows::Forms::Button^  button4;
-	private: System::Windows::Forms::Button^  button5;
-	private: System::Windows::Forms::Button^  button6;
-	private: System::Windows::Forms::Button^  button7;
+
+
+
+
+
+
+
+
+
+	private: System::Windows::Forms::RadioButton^  slowBtn;
+	private: System::Windows::Forms::GroupBox^  speedGrpBx;
+	private: System::Windows::Forms::RadioButton^  fastBtn;
+	private: System::Windows::Forms::RadioButton^  medBtn;
+	private: System::Windows::Forms::Button^  stopBtn;
+	private: System::Windows::Forms::Button^  backBtn;
+	private: System::Windows::Forms::Button^  forwardBtn;
+	private: System::Windows::Forms::Button^  setLedBtn;
+	private: System::Windows::Forms::ColorDialog^  colorDialog;
+
+
 	protected:
 
 	private:
@@ -59,125 +72,150 @@ namespace FinchVS {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
-			this->button3 = (gcnew System::Windows::Forms::Button());
-			this->button4 = (gcnew System::Windows::Forms::Button());
-			this->button5 = (gcnew System::Windows::Forms::Button());
-			this->button6 = (gcnew System::Windows::Forms::Button());
-			this->button7 = (gcnew System::Windows::Forms::Button());
+			this->slowBtn = (gcnew System::Windows::Forms::RadioButton());
+			this->speedGrpBx = (gcnew System::Windows::Forms::GroupBox());
+			this->fastBtn = (gcnew System::Windows::Forms::RadioButton());
+			this->medBtn = (gcnew System::Windows::Forms::RadioButton());
+			this->stopBtn = (gcnew System::Windows::Forms::Button());
+			this->backBtn = (gcnew System::Windows::Forms::Button());
+			this->forwardBtn = (gcnew System::Windows::Forms::Button());
+			this->setLedBtn = (gcnew System::Windows::Forms::Button());
+			this->colorDialog = (gcnew System::Windows::Forms::ColorDialog());
+			this->speedGrpBx->SuspendLayout();
 			this->SuspendLayout();
 			// 
-			// button1
+			// slowBtn
 			// 
-			this->button1->Location = System::Drawing::Point(12, 12);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(116, 23);
-			this->button1->TabIndex = 0;
-			this->button1->Text = L"Set Color to White";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
+			this->slowBtn->AutoSize = true;
+			this->slowBtn->Checked = true;
+			this->slowBtn->Location = System::Drawing::Point(6, 19);
+			this->slowBtn->Name = L"slowBtn";
+			this->slowBtn->Size = System::Drawing::Size(48, 17);
+			this->slowBtn->TabIndex = 7;
+			this->slowBtn->TabStop = true;
+			this->slowBtn->Text = L"Slow";
+			this->slowBtn->UseVisualStyleBackColor = true;
 			// 
-			// button2
+			// speedGrpBx
 			// 
-			this->button2->Location = System::Drawing::Point(12, 41);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(116, 23);
-			this->button2->TabIndex = 1;
-			this->button2->Text = L"Set Color to Blue";
-			this->button2->UseVisualStyleBackColor = true;
-			this->button2->Click += gcnew System::EventHandler(this, &MyForm::button2_Click);
+			this->speedGrpBx->Controls->Add(this->fastBtn);
+			this->speedGrpBx->Controls->Add(this->medBtn);
+			this->speedGrpBx->Controls->Add(this->slowBtn);
+			this->speedGrpBx->Location = System::Drawing::Point(134, 5);
+			this->speedGrpBx->Name = L"speedGrpBx";
+			this->speedGrpBx->Size = System::Drawing::Size(78, 85);
+			this->speedGrpBx->TabIndex = 8;
+			this->speedGrpBx->TabStop = false;
+			this->speedGrpBx->Text = L"Speed";
 			// 
-			// button3
+			// fastBtn
 			// 
-			this->button3->Location = System::Drawing::Point(12, 70);
-			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(116, 23);
-			this->button3->TabIndex = 2;
-			this->button3->Text = L"Set Color to Green";
-			this->button3->UseVisualStyleBackColor = true;
-			this->button3->Click += gcnew System::EventHandler(this, &MyForm::button3_Click);
+			this->fastBtn->AutoSize = true;
+			this->fastBtn->Location = System::Drawing::Point(6, 65);
+			this->fastBtn->Name = L"fastBtn";
+			this->fastBtn->Size = System::Drawing::Size(45, 17);
+			this->fastBtn->TabIndex = 9;
+			this->fastBtn->Text = L"Fast";
+			this->fastBtn->UseVisualStyleBackColor = true;
 			// 
-			// button4
+			// medBtn
 			// 
-			this->button4->Location = System::Drawing::Point(12, 99);
-			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(116, 23);
-			this->button4->TabIndex = 3;
-			this->button4->Text = L"Move Forward";
-			this->button4->UseVisualStyleBackColor = true;
-			this->button4->Click += gcnew System::EventHandler(this, &MyForm::button4_Click);
+			this->medBtn->AutoSize = true;
+			this->medBtn->Location = System::Drawing::Point(6, 42);
+			this->medBtn->Name = L"medBtn";
+			this->medBtn->Size = System::Drawing::Size(62, 17);
+			this->medBtn->TabIndex = 8;
+			this->medBtn->Text = L"Medium";
+			this->medBtn->UseVisualStyleBackColor = true;
 			// 
-			// button5
+			// stopBtn
 			// 
-			this->button5->Location = System::Drawing::Point(12, 128);
-			this->button5->Name = L"button5";
-			this->button5->Size = System::Drawing::Size(116, 23);
-			this->button5->TabIndex = 4;
-			this->button5->Text = L"Stop Motor";
-			this->button5->UseVisualStyleBackColor = true;
-			this->button5->Click += gcnew System::EventHandler(this, &MyForm::button5_Click);
+			this->stopBtn->Location = System::Drawing::Point(12, 38);
+			this->stopBtn->Name = L"stopBtn";
+			this->stopBtn->Size = System::Drawing::Size(116, 23);
+			this->stopBtn->TabIndex = 10;
+			this->stopBtn->Text = L"Stop Motor";
+			this->stopBtn->UseVisualStyleBackColor = true;
+			this->stopBtn->Click += gcnew System::EventHandler(this, &MyForm::stopBtn_Click);
 			// 
-			// button6
+			// backBtn
 			// 
-			this->button6->Location = System::Drawing::Point(12, 157);
-			this->button6->Name = L"button6";
-			this->button6->Size = System::Drawing::Size(116, 23);
-			this->button6->TabIndex = 5;
-			this->button6->Text = L"Make people cringe";
-			this->button6->UseVisualStyleBackColor = true;
-			this->button6->Click += gcnew System::EventHandler(this, &MyForm::button6_Click);
+			this->backBtn->Location = System::Drawing::Point(12, 67);
+			this->backBtn->Name = L"backBtn";
+			this->backBtn->Size = System::Drawing::Size(116, 23);
+			this->backBtn->TabIndex = 11;
+			this->backBtn->Text = L"Move Backwards";
+			this->backBtn->UseVisualStyleBackColor = true;
+			this->backBtn->Click += gcnew System::EventHandler(this, &MyForm::backBtn_Click);
 			// 
-			// button7
+			// forwardBtn
 			// 
-			this->button7->Location = System::Drawing::Point(12, 186);
-			this->button7->Name = L"button7";
-			this->button7->Size = System::Drawing::Size(116, 23);
-			this->button7->TabIndex = 6;
-			this->button7->Text = L"Stop Noise";
-			this->button7->UseVisualStyleBackColor = true;
-			this->button7->Click += gcnew System::EventHandler(this, &MyForm::button7_Click);
+			this->forwardBtn->Location = System::Drawing::Point(12, 9);
+			this->forwardBtn->Name = L"forwardBtn";
+			this->forwardBtn->Size = System::Drawing::Size(116, 23);
+			this->forwardBtn->TabIndex = 12;
+			this->forwardBtn->Text = L"Move Forward";
+			this->forwardBtn->UseVisualStyleBackColor = true;
+			this->forwardBtn->Click += gcnew System::EventHandler(this, &MyForm::forwardBtn_Click);
+			// 
+			// setLedBtn
+			// 
+			this->setLedBtn->Location = System::Drawing::Point(12, 361);
+			this->setLedBtn->Name = L"setLedBtn";
+			this->setLedBtn->Size = System::Drawing::Size(104, 23);
+			this->setLedBtn->TabIndex = 10;
+			this->setLedBtn->Text = L"Set LED";
+			this->setLedBtn->UseVisualStyleBackColor = true;
+			this->setLedBtn->Click += gcnew System::EventHandler(this, &MyForm::setLedBtn_Click);
 			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(284, 261);
-			this->Controls->Add(this->button7);
-			this->Controls->Add(this->button6);
-			this->Controls->Add(this->button5);
-			this->Controls->Add(this->button4);
-			this->Controls->Add(this->button3);
-			this->Controls->Add(this->button2);
-			this->Controls->Add(this->button1);
+			this->ClientSize = System::Drawing::Size(569, 396);
+			this->Controls->Add(this->setLedBtn);
+			this->Controls->Add(this->forwardBtn);
+			this->Controls->Add(this->backBtn);
+			this->Controls->Add(this->stopBtn);
+			this->Controls->Add(this->speedGrpBx);
 			this->Name = L"MyForm";
 			this->Text = L"Finch Controller";
+			this->speedGrpBx->ResumeLayout(false);
+			this->speedGrpBx->PerformLayout();
 			this->ResumeLayout(false);
 
 		}
-#pragma endregion
-	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
-		
 
-		myFinch.setLED(255, 255, 255);
+
+
+private: System::Void forwardBtn_Click(System::Object^  sender, System::EventArgs^  e) {
+	if (slowBtn->Checked)
+		myFinch.setMotors(85, 85);
+	else if (medBtn->Checked)
+		myFinch.setMotors(128, 128);
+	else if (fastBtn->Checked)
+		myFinch.setMotors(255, 255);
+	else
+		MessageBox::Show("Please select a speed first");
 	}
-	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
-		myFinch.setLED(0, 0, 255);
-	}
-private: System::Void button3_Click(System::Object^  sender, System::EventArgs^  e) {
-	myFinch.setLED(0, 255, 0);
-}
-private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e) {
-	myFinch.setMotors(255, 255);
-}
-private: System::Void button5_Click(System::Object^  sender, System::EventArgs^  e) {
+private: System::Void stopBtn_Click(System::Object^  sender, System::EventArgs^  e) {
 	myFinch.setMotors(0, 0);
 }
-private: System::Void button6_Click(System::Object^  sender, System::EventArgs^  e) {
-	myFinch.noteOn(500);
+
+private: System::Void backBtn_Click(System::Object^  sender, System::EventArgs^  e) {
+	if (slowBtn->Checked)
+		myFinch.setMotors(-85, -85);
+	else if (medBtn->Checked)
+		myFinch.setMotors(-128, -128);
+	else if (fastBtn->Checked)
+		myFinch.setMotors(-255, -255);
+	else
+		MessageBox::Show("Please select a speed first");
 }
-private: System::Void button7_Click(System::Object^  sender, System::EventArgs^  e) {
-	myFinch.noteOff();
+private: System::Void setLedBtn_Click(System::Object^  sender, System::EventArgs^  e) {
+	colorDialog->ShowDialog();
+	Color pickedColor = colorDialog->Color;
+	myFinch.setLED(pickedColor.R, pickedColor.G, pickedColor.B);
 }
 };
 }
