@@ -11,8 +11,10 @@ namespace FinchVS {
 	using namespace System::Drawing;
 
 	Finch myFinch;
+	//Varible to hold the speed
+	int speed;
 	/// <summary>
-	/// Summary for MyForm
+	/// Controls a Finch robot
 	/// </summary>
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
@@ -95,6 +97,7 @@ namespace FinchVS {
 			this->slowBtn->TabStop = true;
 			this->slowBtn->Text = L"Slow";
 			this->slowBtn->UseVisualStyleBackColor = true;
+			this->slowBtn->CheckedChanged += gcnew System::EventHandler(this, &MyForm::slowBtn_CheckedChanged);
 			// 
 			// speedGrpBx
 			// 
@@ -117,6 +120,7 @@ namespace FinchVS {
 			this->fastBtn->TabIndex = 9;
 			this->fastBtn->Text = L"Fast";
 			this->fastBtn->UseVisualStyleBackColor = true;
+			this->fastBtn->CheckedChanged += gcnew System::EventHandler(this, &MyForm::fastBtn_CheckedChanged);
 			// 
 			// medBtn
 			// 
@@ -127,6 +131,7 @@ namespace FinchVS {
 			this->medBtn->TabIndex = 8;
 			this->medBtn->Text = L"Medium";
 			this->medBtn->UseVisualStyleBackColor = true;
+			this->medBtn->CheckedChanged += gcnew System::EventHandler(this, &MyForm::medBtn_CheckedChanged);
 			// 
 			// stopBtn
 			// 
@@ -187,35 +192,39 @@ namespace FinchVS {
 		}
 
 
-
+//Makes the Finch go forward
 private: System::Void forwardBtn_Click(System::Object^  sender, System::EventArgs^  e) {
-	if (slowBtn->Checked)
-		myFinch.setMotors(85, 85);
-	else if (medBtn->Checked)
-		myFinch.setMotors(128, 128);
-	else if (fastBtn->Checked)
-		myFinch.setMotors(255, 255);
-	else
-		MessageBox::Show("Please select a speed first");
-	}
+	myFinch.setMotors(speed, speed);
+}
+//Stops the Finch
 private: System::Void stopBtn_Click(System::Object^  sender, System::EventArgs^  e) {
 	myFinch.setMotors(0, 0);
 }
-
+//Makes the Finch go backwards
 private: System::Void backBtn_Click(System::Object^  sender, System::EventArgs^  e) {
-	if (slowBtn->Checked)
-		myFinch.setMotors(-85, -85);
-	else if (medBtn->Checked)
-		myFinch.setMotors(-128, -128);
-	else if (fastBtn->Checked)
-		myFinch.setMotors(-255, -255);
-	else
-		MessageBox::Show("Please select a speed first");
+	speed *=-1;
+	myFinch.setMotors(speed, speed);
 }
+//Sets the LED RGB values for the Finch nose light
 private: System::Void setLedBtn_Click(System::Object^  sender, System::EventArgs^  e) {
 	colorDialog->ShowDialog();
 	Color pickedColor = colorDialog->Color;
 	myFinch.setLED(pickedColor.R, pickedColor.G, pickedColor.B);
+}
+//Sets the Finch's speed value to slow
+private: System::Void slowBtn_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+	if (slowBtn->Checked)
+		speed = 85;
+}
+//Sets the Finch's speed value to medium
+private: System::Void medBtn_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+	if (medBtn->Checked)
+		speed = 128;
+}
+//Sets the Finch's speed value to fast
+private: System::Void fastBtn_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
+	if (fastBtn->Checked)
+		speed = 255;
 }
 };
 }
