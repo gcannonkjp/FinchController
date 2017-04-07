@@ -57,6 +57,8 @@ namespace FinchVS {
 	private: System::Windows::Forms::Button^  forwardBtn;
 	private: System::Windows::Forms::Button^  setLedBtn;
 	private: System::Windows::Forms::ColorDialog^  colorDialog;
+	private: System::Windows::Forms::TrackBar^  trackBar1;
+
 
 
 	protected:
@@ -83,18 +85,18 @@ namespace FinchVS {
 			this->forwardBtn = (gcnew System::Windows::Forms::Button());
 			this->setLedBtn = (gcnew System::Windows::Forms::Button());
 			this->colorDialog = (gcnew System::Windows::Forms::ColorDialog());
+			this->trackBar1 = (gcnew System::Windows::Forms::TrackBar());
 			this->speedGrpBx->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trackBar1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// slowBtn
 			// 
 			this->slowBtn->AutoSize = true;
-			this->slowBtn->Checked = true;
 			this->slowBtn->Location = System::Drawing::Point(6, 19);
 			this->slowBtn->Name = L"slowBtn";
 			this->slowBtn->Size = System::Drawing::Size(48, 17);
 			this->slowBtn->TabIndex = 7;
-			this->slowBtn->TabStop = true;
 			this->slowBtn->Text = L"Slow";
 			this->slowBtn->UseVisualStyleBackColor = true;
 			this->slowBtn->CheckedChanged += gcnew System::EventHandler(this, &MyForm::slowBtn_CheckedChanged);
@@ -173,11 +175,23 @@ namespace FinchVS {
 			this->setLedBtn->UseVisualStyleBackColor = true;
 			this->setLedBtn->Click += gcnew System::EventHandler(this, &MyForm::setLedBtn_Click);
 			// 
+			// trackBar1
+			// 
+			this->trackBar1->Location = System::Drawing::Point(218, 5);
+			this->trackBar1->Maximum = 256;
+			this->trackBar1->Name = L"trackBar1";
+			this->trackBar1->Orientation = System::Windows::Forms::Orientation::Vertical;
+			this->trackBar1->Size = System::Drawing::Size(45, 104);
+			this->trackBar1->TabIndex = 13;
+			this->trackBar1->TickFrequency = 32;
+			this->trackBar1->TickStyle = System::Windows::Forms::TickStyle::Both;
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(569, 396);
+			this->Controls->Add(this->trackBar1);
 			this->Controls->Add(this->setLedBtn);
 			this->Controls->Add(this->forwardBtn);
 			this->Controls->Add(this->backBtn);
@@ -185,9 +199,12 @@ namespace FinchVS {
 			this->Controls->Add(this->speedGrpBx);
 			this->Name = L"MyForm";
 			this->Text = L"Finch Controller";
+			this->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &MyForm::MyForm_KeyDown);
 			this->speedGrpBx->ResumeLayout(false);
 			this->speedGrpBx->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trackBar1))->EndInit();
 			this->ResumeLayout(false);
+			this->PerformLayout();
 
 		}
 
@@ -225,6 +242,8 @@ private: System::Void medBtn_CheckedChanged(System::Object^  sender, System::Eve
 private: System::Void fastBtn_CheckedChanged(System::Object^  sender, System::EventArgs^  e) {
 	if (fastBtn->Checked)
 		speed = 255;
+}
+private: System::Void MyForm_KeyDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e) {
 }
 };
 }
